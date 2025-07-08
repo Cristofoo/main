@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotería Mexicana</title>
-    <link rel="stylesheet" href="{{url_for('static',filname='style.css')}}">
-    <style>/* estilo para definir las columnas dinamicas */
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+    <style>
+        /*Estilo para definir klas columnas dinamicas*/
         .board-container {
-            grid-template-columns: repeat({{columns}}, 1fr);
+            grid-template-columns: repeat({{columns }}, 1fr )
         }
     </style>
+
 </head>
 <body>
     <div class="board-container">
-        {% for filas in tablero %}
-            {% for velda in filas %}
+        {% for fila in tablero %}
+            {% for celda in fila %}
                 <div class="card-cell" style="background-color: {{celda.color}};"></div>
-            {% endfor %}
-        {% endfor %}
+            {% endfor%}        
+        {% endfor%}        
+
     </div>
+
+    
 </body>
 </html>

@@ -1,9 +1,8 @@
-#archivos .gitignore
+#Archivos .gitignore
 __pycache__/
-*pyc 
-.venv/ 
-venv/ 
+*pyc
+.venv/
+venv/
 env/
 *.sqlite3
-ven-todo/ 
-todo/
+venv-todo/
