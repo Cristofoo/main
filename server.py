@@ -18,6 +18,32 @@ cartas = ["1  El Gallo","2  El Diablito","3  La Dama","4  El catrín","5  El par
 
 COLORES_TABLERO = ["#287fe4", "#eadb00", "#dda8c4"]
 
+#funcion auxiliar para generar el tablero
+def generar_tablero(filas, columnas):
+        total_celdas = filas * columnas
+        #asegurarse de que no pidamos ams cartas de las que ya tenemos
+        if total_celdas > len(cartas):
+                cartas_para_tablero = random.sample(cartas, len(cartas))# usamos todas las que tenemos y luego rellenamos repitiendo si necesitamos mas
+        while len(cartas_para_tablero) < total_celdas:
+                cartas_para_tablero.append(random.choice(cartas)) #agregamos cartas aleatorias hasta completar el tablero
+        else:
+                cartas_para_tablero = random.sample(cartas, total_celdas)
+        #barajamos las listas para asegurarnos de que el orden sea aleatorio para cada tablero
+        random.shuffle(cartas_para_tablero)
+        tablero = []
+        carta_index = 0
+        for r in range(filas):
+                fila_actual = []
+                for c in range(columnas):
+                        color_index = (r + c) % len(COLORES_TABLERO)
+                        color = COLORES_TABLERO[color_index]
+
+                        #asignamos la carta aleatoria a la celda
+                        nombre_carta = cartas_para_tablero[carta_index]
+                        carta_index += 1
+                        fila_actual.append({'color': color, 'carta': nombre_carta})
+                tablero.append(fila_actual)
+        return tablero
 @app.route('/loteria')
 def loteria_default():
         filas = 4
